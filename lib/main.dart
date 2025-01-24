@@ -8,12 +8,12 @@ import 'address.dart';
 import 'user.dart';
 
 Future<List<Photo>> fetchPhotos(http.Client client) async {
-  print("調査1");
   final response = await client
       .get(Uri.parse('https://jsonplaceholder.typicode.com/photos'));
-  print("調査2");
 
   return compute(parsePhotos, response.body);
+  // Synchronously run parsePhotos in the main isolate.
+  // return parsePhotos(response.body);
 }
 
 List<Photo> parsePhotos(String responseBody) {
